@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+  
+</head>
+<body>
+
+  <div class="button-group">
+    <a routerLink="/home" class="button">Tạo mới Sản Phẩm</a>
+    <a routerLink="/sanpham" class="button">Xem Danh Sách</a>
+    <a routerLink="/mathang" class="button">Xem Danh Mục </a>
+  </div>
+
+
+
+  <div class="container">
+    <h1>Thêm Mới Sản Phẩm Đồng Hồ</h1>
+    <form (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Tên sản phẩm:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="product.name">
+      </div>
+      <div>
+        <label for="price">Giá:</label>
+        <input type="number" id="price" name="price" [(ngModel)]="product.price">
+      </div>
+      <div>
+        <label for="description">Mô tả:</label>
+        <textarea id="description" name="description" [(ngModel)]="product.description"></textarea>
+      </div>
+      <div>
+        <label for="brand">Thương hiệu:</label>
+        <input type="text" id="brand" name="brand" [(ngModel)]="product.brand">
+      </div>
+      <div>
+        <label for="color">Màu sắc:</label>
+        <input type="text" id="color" name="color" [(ngModel)]="product.color">
+      </div>
+      <div>
+        <label for="material">Chất liệu:</label>
+        <input type="text" id="material" name="material" [(ngModel)]="product.material">
+      </div>
+      <div>
+        <label for="quantity">Số lượng:</label>
+        <input type="text" id="quantity" name="quantity" [(ngModel)]="product.quantity">
+        <select onchange="handleChange(this.value)">
+          <option value="option1">Mời bạn chọn Số Lượng sản phẩm </option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+        </select>
+      </div>
+      <div>
+        <label for="category_id">Danh mục:</label>
+        <input type="text" id="category_id" name="category_id" [(ngModel)]="product.category_id">
+      </div>
+      <div>
+      <label for=" image_url">ảnh:</label>
+      <input type="text" id=" image_url" name=" image_url" [(ngModel)]="product.image_url">
+    </div>
+      <button type="submit">Thêm sản phẩm</button>
+    </form>
+    <hr>
+  </div>
+
+
+
+  <div class="notification">
+    <p>Sản phẩm <strong>Tên sản phẩm</strong> đã được thêm mới thành công!</p>
+  </div>
+ 
+</body>
+</html>
+

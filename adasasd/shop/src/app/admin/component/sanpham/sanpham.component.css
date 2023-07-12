@@ -1,0 +1,293 @@
+h1 {
+    text-align: center;
+    color: red;
+  }
+  
+  .page-content {
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .records {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .button-group {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+        
+        .button {
+          display: inline-block;
+          padding: 10px;
+          font-size: 16px;
+          background-color: #008CBA;
+          color: white;
+          border: none;
+          text-decoration: none;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+        
+        .button:hover {
+          background-color: #006B8F;
+        }
+  
+  
+  
+  
+  
+  
+  
+  
+        
+  
+  
+        nav {
+          background-color: #333;
+          height: 50px;
+          padding: 10px;
+        }
+        
+        nav ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+        }
+        
+        nav li {
+          float: left;
+        }
+        
+        nav li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+        nav li a:hover {
+          background-color: #111;
+        }
+        
+        .search-container {
+          position: absolute;
+          top: 70px;
+          right: 20px;
+          display: flex;
+          align-items: center;
+        }
+        
+        input[type="text"] {
+          padding: 10px;
+          border: 2px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          width: 200px;
+          margin-right: 10px;
+        }
+        
+        button[type="submit"] {
+          background-color: #4CAF50;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          padding: 10px;
+          font-size: 16px;
+        }
+        
+        button[type="submit"]:hover {
+          background-color: #3e8e41;
+        }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      background-color: #eee;
+    }
+  
+    .center p {
+      text-align: center;
+      font-size: 24px;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    label {
+      font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    select {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    
+    button[type="submit"],
+    button[type="button"] {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    button[type="submit"]:hover,
+    button[type="button"]:hover {
+      background-color: #3e8e41;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    .edit-button, .delete-button {
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .edit-button:hover, .delete-button:hover {
+      background-color: #3e8e41;
+    }
+  
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    
+      width: 70%;
+      height: 90%;
+      margin: auto;
+  
+  
+  
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #3366FF;
+    }
+    
+    button {
+      margin-right: 10px;
+    }
+  

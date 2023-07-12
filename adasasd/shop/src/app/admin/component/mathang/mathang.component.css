@@ -1,0 +1,94 @@
+
+
+
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    text-decoration: none;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #006B8F;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  input[type=text] {
+    width: 250px;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  h1 {
+    text-align: center; /* căn giữa nội dung */
+    line-height: 1.5; /* căn giữa theo chiều dọc */
+    color: red;
+  
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  
+    width: 70%;
+    height: 90%;
+    margin: auto;
+  
+  
+  
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #3366FF;
+  
+    background-color: #3366FF;
+    color: white;
+  }
+  
+  button {
+    margin-right: 10px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
