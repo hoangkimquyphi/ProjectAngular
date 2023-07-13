@@ -11,7 +11,7 @@ export class UserService {
 
   private loggedInUser: any = null;
 
-  private apiUrl = 'http://localhost:7800/api/users/login';
+  private apiUrl = 'http://localhost:9000/api/users/login';
   constructor(
     private http: HttpClient,
     private permissionsService: NgxPermissionsService
@@ -57,7 +57,7 @@ export class UserService {
       { id: 1, username: '', password: '', role: '' },
       { id: 2, username: '', password: '=', role: '' },
       { id: 3, username: '', password: '', role: 'user' },
- 
+
     ];
 
     const user = users.find(
@@ -106,7 +106,7 @@ export class UserService {
     birthday: Number,
     password: string,
     password_confirmation: string,
-  
+
   ): Observable<any> {
     const url = 'http://localhost:7800/api/users/register'; // URL đến mock API
     const body = {
@@ -125,5 +125,5 @@ export class UserService {
     return this.http.post(url, body); // Gửi request và trả về response dưới dạng Observable
   }
 
-  
+
 }

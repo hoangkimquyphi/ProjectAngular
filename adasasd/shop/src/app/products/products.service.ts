@@ -15,33 +15,33 @@ export class ProductsService {
   }
 
   getAllProducts() : Observable<Product>{
-    const productUrl = 'http://localhost:7800/api/products';
+    const productUrl = 'http://localhost:9000/api/products';
     return this.HttpClient.get<Product>(productUrl);
-  
+
   };
   getProducts(): Observable<Product[]> {
-    const productUrl = 'http://localhost:7800/api/products'
+    const productUrl = 'http://localhost:9000/api/products'
     return this.HttpClient.get<Product[]>(productUrl);
   }
 getCategories() : Observable<Category>{
-  const categoryUrl = 'http://localhost:7800/api/categories/';
+  const categoryUrl = 'http://localhost:9000/api/categories/';
     return this.HttpClient.get<Category>(categoryUrl);
 }
 
    createProduct(productBody: any): Observable<Product>{
-    const productUrl = 'http://localhost:7800/api/products/';
+    const productUrl = 'http://localhost:9000/api/products/';
 
     return this.HttpClient.post<Product>(productUrl,productBody);
-       
+
 
   };
   updateProduct(productId: any,productBody: any): Observable<Product>{
-    const productUrl = 'http://localhost:7800/api/products/'+productId;
+    const productUrl = 'http://localhost:9000/api/products/'+productId;
 
     return this.HttpClient.put<Product>(productUrl,productBody);
   };
   deleteProduct(productId: any): Observable<Product>{
-    const productUrl = 'http://localhost:7800/api/products/'+productId;
+    const productUrl = 'http://localhost:9000/api/products/'+productId;
 
     return this.HttpClient.delete<Product>(productUrl);
   };
@@ -51,17 +51,17 @@ getCategories() : Observable<Category>{
     return this.HttpClient.get<Product>(productUrl);
   };
   searchDateProducts(dateParam: any): Observable<Product>{
-    const productUrl = 'http://localhost:7800/api/products/date='+dateParam;
+    const productUrl = 'http://localhost:9000/api/products/date='+dateParam;
 
     return this.HttpClient.get<Product>(productUrl);
   };
   viewProduct(productId: any): Observable<Product>{
-    const productUrl = 'http://localhost:7800/api/products/'+productId;
+    const productUrl = 'http://localhost:9000/api/products/'+productId;
 
     return this.HttpClient.get<Product>(productUrl);
   };
 
 
-  
-  
+
+
 }

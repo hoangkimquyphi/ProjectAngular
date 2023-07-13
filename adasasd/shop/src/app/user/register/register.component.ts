@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth-service.service';
 
 @Component({
   selector: 'app-register',
@@ -7,28 +10,42 @@ import { UserService } from '../user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  username: string |any
-  email: string |any;
-  full_name: string |any;
-  phone:  string |any;
-  address: string |any;
-  gender: string |any;
-  birthday: string |any
-  password: string |any;
-  password_confirmation: |any;
+  username: string = '';
+  email: string = '';
+  full_name: string = '';
+  phone: string = '';
+  address: string = '';
+  gender: string = '';
+  birthday: string = '';
+  password: string = '';
+  password_confirmation: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private http: HttpClient, private userService: AuthService, private router : Router) { }
   onSubmit() {
-    this.userService.register(this.username, this.email, this.full_name, this.phone,this.address,this.gender,this.birthday, this.password,this.password_confirmation).subscribe(
-      (response) => {
-        console.log('Login successful:', response);
-        // Lưu thông tin đăng nhập vào localStorage hoặc sessionStorage
-      },
-      (error) => {
-        console.log('Login failed:', error);
-        // Hiển thị thông báo lỗi đăng nhập
-      }
-    );
-}
-
+    this.userService.register(this.username,
+      this.email,
+      this.full_name,
+      this.phone,
+      this.address,
+      this.gender,
+      this.birthday,
+      this.password,
+      this.password_confirmation).subscribe(data => { console.log(data) }),
+      this.router.navigate(['/login']);
+  }
+  // register(): Observable<any> {
+  //   const url = 'http://localhost:9000/api#/users/UsersController_register';
+  //   const body = {
+  //     username: this.username,
+  //     email: this.email,
+  //     full_name: this.full_name,
+  //     phone: this.phone,
+  //     address: this.address,
+  //     gender: this.gender,
+  //     birthday: this.birthday,
+  //     password: this.password,
+  //     password_confirmation: this.password_confirmation
+  //   };
+  //   return this.http.post(url, body);
+  // }
 }
