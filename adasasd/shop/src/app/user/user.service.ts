@@ -11,7 +11,7 @@ export class UserService {
 
   private loggedInUser: any = null;
 
-  private apiUrl = 'http://localhost:7900/api/#/users';
+  private apiUrl = 'http://localhost:7800/api/users/login';
   constructor(
     private http: HttpClient,
     private permissionsService: NgxPermissionsService
@@ -54,9 +54,10 @@ export class UserService {
   private mockApiLogin(username: string, password: string): any {
     // Sử dụng mock API để đăng nhập và trả về thông tin người dùng, ví dụ:
     const users = [
-      { id: 1, username: 'admin', password: 'admin', role: 'admin' },
-      { id: 2, username: 'staff', password: 'staff', role: 'staff' },
-      { id: 3, username: 'user', password: 'user', role: 'user' },
+      { id: 1, username: '', password: '', role: '' },
+      { id: 2, username: '', password: '=', role: '' },
+      { id: 3, username: '', password: '', role: 'user' },
+ 
     ];
 
     const user = users.find(
@@ -68,7 +69,7 @@ export class UserService {
     return null;
   }
   async login2(username: string, password: string): Promise<Observable<any>> {
-    const url = 'http://localhost:3000/user'; // URL đến mock API
+    const url = 'http://localhost:7800/api/users/login'; // URL đến mock API
     const body = { username, password }; // Body của request
     return await this.http.post(url, body); // Gửi request và trả về response dưới dạng Observable
   }
@@ -97,25 +98,32 @@ export class UserService {
 
   register(
     username: string,
-    password: string,
-    confirmpassword: string,
     email: string,
+    full_name: string,
     phone: string,
     address: string,
-    gender: string
+    gender: string,
+    birthday: Number,
+    password: string,
+    password_confirmation: string,
+  
   ): Observable<any> {
-    const url = 'http://localhost:3000/user'; // URL đến mock API
+    const url = 'http://localhost:7800/api/users/register'; // URL đến mock API
     const body = {
       username,
-      password,
       email,
-      confirmpassword,
+      full_name,
       phone,
       address,
       gender,
+      birthday,
+      password,
+      password_confirmation,
 
     }; // Body của request
 
     return this.http.post(url, body); // Gửi request và trả về response dưới dạng Observable
   }
+
+  
 }

@@ -7,20 +7,19 @@ import { UserService } from '../user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  username: string |any;
-  password: string |any;
+  username: string |any
   email: string |any;
-  confirmpassword: any;
-  phone: any;
-  address: any;
-  gender: any;
+  full_name: string |any;
+  phone:  string |any;
+  address: string |any;
+  gender: string |any;
+  birthday: string |any
+  password: string |any;
+  password_confirmation: |any;
 
   constructor(private userService: UserService) {}
-
-
-
   onSubmit() {
-    this.userService.register(this.username, this.password,this.confirmpassword,this.email,this.phone,this.address,this.gender).subscribe(
+    this.userService.register(this.username, this.email, this.full_name, this.phone,this.address,this.gender,this.birthday, this.password,this.password_confirmation).subscribe(
       (response) => {
         console.log('Login successful:', response);
         // Lưu thông tin đăng nhập vào localStorage hoặc sessionStorage

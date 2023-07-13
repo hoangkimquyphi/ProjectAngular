@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="text-center">Đăng ký</h4>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="onSubmit()">
+              <input type="text" [(ngModel)]="username" name="username" placeholder="Nhập tài khoản">
+              <input type="email" [(ngModel)]="email" name="email" placeholder="Nhập email">
+              <input type="full_name"[(ngModel)]="full_name" name="full_name" placeholder="full_name">
+              <input type="phone" [(ngModel)]="phone" name="phone" placeholder="Nhập số điện thoại">
+              <input type="address" [(ngModel)]="address" name="address" placeholder="Nhập địa chỉ">
+              <input type="gender" [(ngModel)]="gender" name="gender" placeholder="gender">
+              <input type="birthday" [(ngModel)]="birthday" name="birthday" placeholder="birthday">
+              <input type="password"[(ngModel)]="password" name="password" placeholder="Nhập mật khẩu">
+              <input type="password_confirmation" [(ngModel)]="password_confirmation" name="password_confirmation" placeholder="Nhập lại mật khẩu">
+              <button type="submit">register</button>
+            </form>
+          </div>
+          <div class="card-footer">
+            <p class="text-center">Đã có tài khoản? <a href="user-auth">Đăng nhập ngay</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

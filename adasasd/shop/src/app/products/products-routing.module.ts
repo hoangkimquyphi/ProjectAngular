@@ -9,7 +9,7 @@ import { ViewAllProductsByDateComponent } from './view-all-products-by-date/view
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 const routes: Routes = [
-  { path: '', component: ViewAllProductsComponent },
+  {path: '', component: ViewAllProductsComponent },
   {path:'viewall', component: ProductsComponent},
   { path: 'create-product', component: CreateProductComponent },
   { path: 'product/:id', component: ViewProductComponent },
@@ -17,11 +17,6 @@ const routes: Routes = [
   { path: 'search-date', component: ViewAllProductsByDateComponent },
   { path: 'delete-product/:id', component: DeleteProductComponent },
   { path: 'update-product/:id', component: UpdateProductComponent },
-
- 
-  
-  
-
 
 ];
 

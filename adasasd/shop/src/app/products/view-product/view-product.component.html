@@ -8,8 +8,6 @@
 
               <div class="">
                  <h3> Giá: <span class="">{{productDetails.price}}</span> </h3>            
-                 <!-- <a href="products/update-product/{{productDetails.id}}">Update Product</a><br>
-                  <a href="products/delete-product/{{productDetails.id}}">Delete Product</a><br> -->
               </div>
               <h3>Màu Sắc:  <a>{{productDetails.color}}</a></h3>
               <h3>Thường Hiệu:  <a>{{productDetails.brand}}</a></h3>
@@ -17,14 +15,84 @@
               <h3>Vật Liệu:  <a>{{productDetails.material}}</a></h3>
               <p class="lead">{{productDetails.description}}</p>
               <div class="d-flex">
-                  <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                  <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                  <input class="form-control text-center me-3" id="inputQuantity" type="number"name="myNumber" min="0" value="1" style="max-width: 4rem" />
+                  <!-- <button class="btn btn-outline-dark flex-shrink-0" type="button">
                       <i class="bi-cart-fill me-1"></i>
                       Add to cart
-                  </button>
+                  </button> -->
+                  
               </div>
           </div>
       </div>
   </div>
 
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <div class="pd-wrap">
+    <div class="container">
+ <div class="heading-section">
+          </div>
+          <div class="product-info-tabs">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Mô Tả</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false"> Đánh Giá (0)</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                Đây là sản phẩm có thiết kế đính full đá, viền bezel ẩn 6 ốc chữ I, kết hợp với lớp kính sapphire trong vắt. Mẫu đồng hồ này sở hữu vẻ đẹp bóng bẩy, lấp lánh, sang trọng, thu hút mọi khách hàng ngay từ cái nhìn đầu tiên.
+
+                Bên trong sản phẩm được trang bị bộ máy cơ khí được sản xuất bởi ông lớn Seiko với khả năng trữ cót lên tới 40h. Đặc biệt độ sai số của mẫu này được hạn chế tối đa, đảm bảo sự chính xác hoàn hảo.
+            </div>
+            <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+              <div class="review-heading">REVIEWS</div>
+              <p class="mb-20">There are no reviews yet.</p>
+              <form class="review-form">
+                  <div class="form-group">
+                    <label>Your rating</label>
+                    <div class="reviews-counter">
+                  <div class="rate">
+                      <input type="radio" id="star5" name="rate" value="5" />
+                      <label for="star5" title="text">5 stars</label>
+                      <input type="radio" id="star4" name="rate" value="4" />
+                      <label for="star4" title="text">4 stars</label>
+                      <input type="radio" id="star3" name="rate" value="3" />
+                      <label for="star3" title="text">3 stars</label>
+                      <input type="radio" id="star2" name="rate" value="2" />
+                      <label for="star2" title="text">2 stars</label>
+                      <input type="radio" id="star1" name="rate" value="1" />
+                      <label for="star1" title="text">1 star</label>
+                  </div>
+                </div>
+              </div>
+                  <div class="form-group">
+                    <label>Your message</label>
+                    <textarea class="form-control" rows="10"></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" name="" class="form-control" placeholder="Name*">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" name="" class="form-control" placeholder="Email Id*">
+                      </div>
+                    </div>
+                  </div>
+                  <button class="round-black-btn">Submit Review</button>
+                </form>
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
 

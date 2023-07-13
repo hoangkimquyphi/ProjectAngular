@@ -14,8 +14,11 @@ const routes: Routes = [
   { path: 'staff', component: StaffComponent },
 ];
 
-@NgModule({
+@NgModule(
+  {
+
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+
 })
 export class UsersRoutingModule {}

@@ -1,48 +1,55 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-@Injectable({
-  providedIn: 'root',
-})
-export class ProductService {
-  products: any[] = [];
+// import { Injectable } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+// import { Observable } from 'rxjs';
+// import { Product } from '../products/product';
 
-  constructor(private http: HttpClient) {}
 
-  getAllProducts() {
-    return this.http.get('assets/data.json');
-  }
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class ProductsService {
+//   [x: string]: any;
+//   constructor(private HttpClient: HttpClient) {
 
-  getProduct() {
-    return this.products;
-  }
+//   }
 
-  saveCart(): void {
-    localStorage.setItem('cart_items', JSON.stringify(this.products));
-  }
+//   getAllProducts() : Observable<Product>{
+//     const productUrl = 'http://localhost:7800/api/products';
+//     return this.HttpClient.get<Product>(productUrl);
+  
+//   };
+//   getProducts(): Observable<Product[]> {
+//     const productUrl = 'http://localhost:7800/api/products'
+//     return this.HttpClient.get<Product[]>(productUrl);
+//   }
 
-  addToCart(addedProduct: any) {
-    this.products.push(addedProduct);
-    this.saveCart();
-  }
+//   saveCart(): void {
+//     localStorage.setItem('cart_items', JSON.stringify(this.getProducts));
+//   }
 
-  loadCart(): void {
-    this.products = JSON.parse(localStorage.getItem('cart_items') as any) || [];
-  }
+//   addToCart(addedProduct: any) {
+//     this.products.push(addedProduct);
+//     this.saveCart();
+//   }
 
-  productInCart(product: any): boolean {
-    return this.products.findIndex((x: any) => x.id === product.id) > -1;
-  }
+//   loadCart(): void {
+//     this.products = JSON.parse(localStorage.getItem('cart_items') as any) || [];
+//   }
 
-  removeProduct(product: any) {
-    const index = this.products.findIndex((x: any) => x.id === product.id);
+//   productInCart(product: any): boolean {
+//     return this.products.findIndex((x: any) => x.id === product.id) > -1;
+//   }
 
-    if (index > -1) {
-      this.products.splice(index, 1);
-      this.saveCart();
-    }
-  }
+//   removeProduct(product: any) {
+//     const index = this.products.findIndex((x: any) => x.id === product.id);
 
-  clearProducts() {
-    localStorage.clear();
-  }
-}
+//     if (index > -1) {
+//       this.products.splice(index, 1);
+//       this.saveCart();
+//     }
+//   }
+
+//   clearProducts() {
+//     localStorage.clear();
+//   }
+// }

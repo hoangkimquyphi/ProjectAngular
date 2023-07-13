@@ -12,13 +12,6 @@ import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { HomeComponent } from './home/home.component';
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
