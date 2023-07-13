@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { User } from './user';
 
 @Injectable({
@@ -38,6 +38,15 @@ export class AuthService {
     }; // Body của request
 
     return this.http.post(url, body); // Gửi request và trả về response dưới dạng Observable
+  }
+  register1(userData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, userData).pipe(
+      map(response => {
+        // Lưu thông tin đăng nhập vào localStorage
+        localStorage.setItem('currentUser', JSON.stringify(response.user));
+        localStorage.setItem('token', response.token);
+      })
+    );
   }
 
 }

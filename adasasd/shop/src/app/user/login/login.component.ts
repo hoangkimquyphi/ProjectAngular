@@ -1,37 +1,22 @@
-
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
-import { Router } from '@angular/router';
-import { User } from '../user';
-import { AuthService } from '../auth-service.service';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent{
-  username: string |any
-  password: string |any;
+export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  successMessage: string | null = null;
 
-  onSubmit() {
-    this.authService.login(this.username, this.password).subscribe(
-      (response: any) => {
-        // Lưu trữ JWT token vào localStorage hoặc service
-        localStorage.setItem('currentUser', JSON.stringify(response.token));
-        // Chuyển hướng người dùng đến trang chính
-        this.router.navigate(['/home']);
-      },
-      (error: any) => {
-        // Xử lý lỗi đăng nhập
-        alert('Tên đăng nhập hoặc mật khẩu không chính xác!');
-      }
-    );
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    // Lấy thông báo đăng nhập thành công từ queryParams
+    this.route.queryParams.subscribe(params => {
+      this.successMessage = params['successMessage'];
+    });
   }
+
 }
-
-
-
-  
