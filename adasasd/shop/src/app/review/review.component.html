@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Product Reviews</h1>
+  <div *ngFor="let review of reviews">
+    <h3>{{ review.name }}</h3>
+    <p>{{ review.review }}</p>
+    <p>Rating: {{ review.rating }}</p>
+  </div>
+  <form (submit)="addReview(name.value, email.value, rating.value, review.value)">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <select id="rating" name="rating" required>
+        <option value="">Select rating</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="review">Review:</label>
+      <textarea id="review" name="review" required></textarea>
+    </div>
+    <div class="form-group">
+      <button type="submit">Submit</button>
+    </div>
+
+
