@@ -20,13 +20,16 @@ export class LoginComponent{
     this.authService.login(this.username, this.password).subscribe(
       (response: any) => {
         // Lưu trữ JWT token vào localStorage hoặc service
+        const token = response.token;
+        localStorage.setItem('token', token);
+        console.log('Login successful:', response);
         localStorage.setItem('currentUser', JSON.stringify(response.token));
         // Chuyển hướng người dùng đến trang chính
         this.router.navigate(['/home']);
       },
       (error: any) => {
         // Xử lý lỗi đăng nhập
-        alert('Tên đăng nhập hoặc mật khẩu không chính xác!');
+        alert('Username or password incorrect!');
       }
     );
   }

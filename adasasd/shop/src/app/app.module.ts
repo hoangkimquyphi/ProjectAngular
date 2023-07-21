@@ -12,6 +12,8 @@ import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
+import { CardComponent } from './card/card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +21,7 @@ import { HomeComponent } from './home/home.component';
     AboutComponent,
     PaymentComponent,
     HomeComponent,
+    CardComponent,
  
  
   ],
@@ -31,6 +34,7 @@ import { HomeComponent } from './home/home.component';
     UserModule,
     FormsModule,
     NgxPayPalModule,
+    RouterModule 
    
 
     
