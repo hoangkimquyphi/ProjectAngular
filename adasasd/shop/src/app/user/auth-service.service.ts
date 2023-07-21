@@ -15,14 +15,14 @@ export class AuthService {
   
   login(
     username: string,
-    email: string,
+    password: string,
     
   
   ): Observable<any> {
-    const url = 'http://localhost:7800/api/users/login'; // URL đến mock API
+    const url = 'http://localhost:4000/api/users/login'; // URL đến mock API
     const body = {
       username,
-      email,
+      password,
       
 
     }; // Body của request

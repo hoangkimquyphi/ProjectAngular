@@ -11,7 +11,7 @@ export class UserService {
 
   private loggedInUser: any = null;
 
-  private apiUrl = 'http://localhost:7800/api/users/login';
+  private baseUrl = 'http://localhost:4000/api/users/login';
   constructor(
     private http: HttpClient,
     private permissionsService: NgxPermissionsService
@@ -73,20 +73,7 @@ export class UserService {
     const body = { username, password }; // Body của request
     return await this.http.post(url, body); // Gửi request và trả về response dưới dạng Observable
   }
-  // login1(username: string, password: string): Observable<string> {
-  //   return this.http.get<User[]>('http://localhost:3000/users').pipe(
-  //     map((users: User[]) => {
-  //       const user = users.find(
-  //         (u) => u.username === username && u.password === password
-  //       );
-  //       if (user) {
-  //         return user.role;
-  //       } else {
-  //         throw new Error('Invalid credentials');
-  //       }
-  //     })
-  //   );
-  // }
+  
 
   public setPermissions(permissions: string[]) {
     this.permissionsService.loadPermissions(permissions);
@@ -124,6 +111,13 @@ export class UserService {
 
     return this.http.post(url, body); // Gửi request và trả về response dưới dạng Observable
   }
+
+  loginn(username: string, password: string): Observable<any> {
+    const url = `${this.baseUrl}`;
+    const body = { username, password };
+    return this.http.post(url, body);
+  }
+  
 
   
 }

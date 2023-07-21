@@ -288,20 +288,20 @@ form textarea{
 	text-decoration: none;
 }
 .hinh-sp{
-	height: 230px;
+	height: 190px;
 	width: 210px;
 	position: relative;
 }
 .ten-sp{
 	text-align: left;
 	margin: 0;
-	padding: 5px 0 0 10px;
+	padding: 0px 0 0 10px;
 	font-size: 17px;
 	color: black;
 }
 .gia-tien{
-	margin: 0;
-	padding: 0px 0 0 10px;
+	margin: -15;
+	padding: 0px 0 0 0px;
 	font-size: 18px;
 	color: red;
 }
@@ -316,7 +316,7 @@ form textarea{
 }
 .them-vao-gio-hang{
 	text-align: right;
-	padding-top: 15px;
+	padding-top: 10px;
 }
 .them{
 	font-size: 12px;
@@ -457,3 +457,4 @@ footer {
 .column a:hover {
   color: #007bff;
 }
+
