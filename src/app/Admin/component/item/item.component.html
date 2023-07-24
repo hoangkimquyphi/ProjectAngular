@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+    
+  
+</head>
+<body>
+
+ 
+ 
+  <div class="button-group">
+    <a routerLink="/suadanhmuc" class="button"> Sửa Sản Phẩm</a>
+    <a routerLink="/sanpham" class="button">Xem Danh Sách</a>
+    <a routerLink="/mathang" class="button">Xem Danh Mục </a>
+  </div>
+
+  <h1>Danh Mục Quản Lý Danh Mục</h1>
+
+  <div class="page-content">
+    <div class="records table-responsive">
+      <div class="record-header">
+        <div class="add">
+          <span>Entries</span>
+          <select name="" id="">
+            <option value="">ID</option>
+          </select>
+          <button>Add record</button>
+          
+        </div>
+
+        <div class="browse">
+          <input type="search" placeholder="Search" class="record-search" />
+          <select name="" id="">
+            <option value=""></option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <table class="">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              
+              <th scope="col">Image</th>
+                 
+            
+                   
+              <th scope="col">Product Name</th> 
+              
+              
+              <th scope="col">Description</th>
+          
+              <th scope="col">Feture</th>
+             
+            </tr>
+          </thead>
+          <tbody  *ngFor ="let item of lists">
+            <tr>
+              <th scope="row">{{item.id}}</th>
+              <td>{{item.name}}</td>
+             
+              <td><img height="49" src="{{item.image_url}}"></td>
+              <td>{{item.material}}</td>
+              <td>{{item.description}}</td>
+             
+              <td>
+                <div class="actions">
+                    <span><button (click)="Delete()" class="delete-button">Delete</button></span>
+                    <span><a href="/editdirectory"><button class="edit-button">Edit</button></a></span>
+                    
+                    <span class="las la-ellipsis-v"></span>
+                </div>
+            </tr>
+         
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+<body>
+<html>
+

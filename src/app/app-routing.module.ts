@@ -13,6 +13,13 @@ import { SellerHomeComponent } from './seller-home/seller-home.component';
 import { SellerUpdateProductComponent } from './seller-update-product/seller-update-product.component';
 import { UserAuthComponent } from './user-auth/user-auth.component';
 import { RegisterComponent } from './register/register.component';
+import { AddnewcategoryComponent } from './Admin/component/addnewcategory/addnewcategory.component';
+import { AddnewproductComponent } from './Admin/component/addnewproduct/addnewproduct.component';
+import { EditdirectoryComponent } from './Admin/component/editdirectory/editdirectory.component';
+import { ItemComponent } from './Admin/component/item/item.component';
+import { ProductComponent } from './Admin/component/product/product.component';
+import { TableComponent } from './Admin/component/table/table.component';
+import { DangnhapComponent } from './Admin/dangnhap/dangnhap.component';
 
 const routes: Routes = [
   {
@@ -59,7 +66,29 @@ const routes: Routes = [
   },{
     component:MyOrdersComponent,
     path:'my-orders'
+  },{
+    component:AddnewcategoryComponent,
+    path:'addnewcategory'
+  },{
+    component:AddnewproductComponent,
+    path:'addnewproduct'
+  },{
+    component:EditdirectoryComponent,
+    path:'editdirectory'
+  },{
+    component:ItemComponent,
+    path:'item'
+  },{
+    component:ProductComponent,
+    path:'product'
+  },{
+    component:TableComponent,
+    path:'table'
+  },{
+    component:DangnhapComponent,
+    path:'dangnhap'
   }
+
 ];
 
 @NgModule({

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  
+</head>
+<body>
+
+  <div class="button-group">
+    <a routerLink="/suadanhmuc" class="button">Tạo mới Sản Phẩm</a>
+    <a routerLink="/sanpham" class="button">Xem Danh Sách</a>
+    <a routerLink="/Items" class="button">Xem Danh Mục </a>
+  </div>
+
+
+  <div class="container">
+    <h1>Sửa Danh Sách Sản Phẩm Đồng Hồ</h1>
+    <form (ngSubmit)="onSubmit()">
+      <div>
+        <label for="name">Tên sản phẩm:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="product.name">
+      </div>
+      <div>
+        <label for="price">Số Lượng:</label>
+        <select onchange="handleChange(this.value)"id="price" name="price" [(ngModel)]="product.price">
+          <option value="01">01 </option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+        </select>
+      </div>
+      <div>
+        <label for="description">Mô tả:</label>
+        <textarea id="description" name="description" [(ngModel)]="product.description"></textarea>
+      </div>
+      <div>
+        <label for="brand">Thương hiệu:</label>
+        <select onchange="handleChange(this.value)"id="brand" name="brand" [(ngModel)]="product.brand">
+          <option value="Quartz">Quartz </option>
+          <option value="Master">Master</option>
+          <option value=" Pinaus">  Pinaus</option>
+          <option value=" Casio"> Casio</option>
+          <option value=" Townsman">  Townsman</option>
+        </select>
+      </div>
+      <div>
+        <label for="color">Màu sắc:</label>
+        <select onchange="handleChange(this.value)"id="color" name="color" [(ngModel)]="product.color">
+          <option value="Xanh dương">Xanh dương </option>
+          <option value="Trắng">Trắng</option>
+          <option value=" Tím"> Tím</option>
+          <option value=" Lam ">  Lam</option>
+          <option value=" Tím nhạt">  Tím nhạt</option>
+        </select>
+      </div>
+      <div>
+        <label for="material">Chất liệu:</label>
+        
+        <select onchange="handleChange(this.value)"id="material" name="material" [(ngModel)]="product.material">
+          <option value="KaKi">Bạch kim </option>
+          <option value="Cotton">kim loại</option>
+          <option value="Jeans">Tantalum</option>
+        </select>
+      </div>
+      <div>
+        <label for="quantity">Gía:</label>
+        <select onchange="handleChange(this.value)"id="quantity" name="quantity" [(ngModel)]="product.quantity">
+          <option value="Quartz-800000">Quartz-800000 </option>
+          <option value="Master-800000">Master-800000</option>
+          <option value="Pinaus-800000">Pinaus-800000</option>
+          <option value=" Casio-900000 ">Casio-900000 </option>
+          <option value="Townsman-100000">Townsman-100000</option>
+        </select>
+      </div>
+      <div>
+        <label for="category_id">Danh mục:</label>
+        <input type="text" id="category_id" name="category_id" [(ngModel)]="product.category_id">
+      </div>
+      <div>
+      <label for=" image_url">ảnh:</label>
+      <input type="text" id=" image_url" name=" image_url" [(ngModel)]="product.image_url">
+    </div>
+    <span><a href="/editdirectory"><button class="edit-button">Sửa Danh Sách Sản Phẩm</button></a></span>
+    </form>
+    <hr>
+  </div>
+  
+
+  <div class="notification">
+    <p>Sản phẩm <strong>Tên sản phẩm</strong> đã được thêm mới thành công!</p>
+  </div>
+ 
+</body>
+</html>
+
