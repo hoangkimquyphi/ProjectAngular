@@ -207,12 +207,28 @@ export class WebApiService {
       productQuantity: productQuantity,
     });
   }
-  private apiUrl = 'http://localhost:4000/api/reviews';
-  getReviews() {
+  private apiUrl = "http://localhost:4000/products";
+  getProduct(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  addReview(review: any) {
-    return this.http.post<any>(this.apiUrl, review);
+  private api = "http://localhost:4000/reviews";
+  saveProductReview(review: any,productId :any): Observable<any> {
+    review.productId = productId;
+    return this.http.post<any>("http://localhost:4000/reviews", review);
   }
+
+  addProductReview(review: any) {
+    return this.http.post<any>("http://localhost:4000/reviews", review);
+  }
+  submitReview(productId: number, userId: number, rating: number, review: string): Observable<any> {
+    const url = "http://localhost:4000/reviews";
+    const payload = { productId, userId, rating, review };
+    return this.http.post(url, payload);
+  }
+
+  updateProduct(product: IProduct) {
+    return this.http.put<IProduct>( `http://localhost:3000/products/${product.id}`, product);
+  }
+
 }

@@ -1,3 +1,4 @@
+
 <div class="container pt-5">
     <div class="row">
         <div class="col-2 sideshow">
@@ -11,10 +12,13 @@
             'border-radius': '5px',
             height: '150px',
             width:'250px',
-
             border: '1px solid white'
           }" *ngIf="loader"></ngx-skeleton-loader>
         <div class="col-4 info">
+          <a class="col-md-2" href="review-product/{{ productData.id }}"><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
+            <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"/>
+          </svg></span></a>
           <h1>{{productData.name}}</h1>
           <h3>Price : {{productData.price}} $</h3>
           <h3><label for="color">Coler</label></h3>
@@ -114,29 +118,14 @@
       }" *ngIf="loader"></ngx-skeleton-loader>
 
 </div>
-<div class="container">
-  <h1>Product Reviews</h1>
-  <div *ngFor="let review of reviews">
-    <h3>{{ review.name }}</h3>
-    <p>{{ review.review }}</p>
-    <p>Rating: {{ review.rating }}</p>
-  </div>
-  <form (submit)="addReview(rating.value, comment.value)">
-    <div class="form-group">
-      <label for="rating">Rating:</label>
-      <select id="rating" name="rating" required>
-        <option value="">Select rating</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="review">Review:</label>
-      <textarea id="review" name="review" required></textarea>
-    </div>
-    <div class="form-group">
-      <button type="submit">Submit</button>
+
+
+
+
+    <div class="container">
+      <div *ngFor="let review of reviews">
+        <h3>{{ review.comment }}</h3>
+        <p>{{ review.rating }}</p>
+        <p>Rating: {{ review.rating }}</p>
+      </div>
     </div>
