@@ -32,6 +32,7 @@ export class LoginComponent  implements   OnInit {
       (response) => {
         const token = response.token;
         localStorage.setItem('token', token);
+
         console.log('Login successful:', response);
         alert('Đăng nhập thành công')
         this.router.navigate(['/']);
