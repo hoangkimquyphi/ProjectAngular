@@ -32,7 +32,7 @@
           <!-- <h3>brand : {{productData.brand}}</h3> -->
 
          <h3>Brand: {{productData.brand}}</h3>
-       
+
           <h3>material : {{productData.material}}</h3>
           <h3>Description : {{productData.description}}</h3>
           <p>Quantity: {{quantity}}</p>
@@ -118,10 +118,9 @@
 
 
 
-    <div class="container">
-      <div *ngFor="let review of reviews">
-        <h3>{{ review.comment }}</h3>
-        <p>{{ review.rating }}</p>
-        <p>Rating: {{ review.rating }}</p>
+<div class="col-sm-6" *ngFor="let item of reviewList">
+  <div class="details">
+    <p>{{item.rating}}</p>
+    <p>{{item.comment}}</p>
       </div>
-    </div>
+  </div>

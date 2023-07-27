@@ -44,6 +44,7 @@ export class ProductReviewsComponent implements OnInit {
 
 
   // REVIEW
+  
   saveProductReview() {
     console.log(this.user);
 
@@ -82,40 +83,4 @@ export class ProductReviewsComponent implements OnInit {
       }
     );
   }
-  // Lấy token từ localStorage
-const token = localStorage.getItem("token");
-
-if (token) {
-  // Token tồn tại trong localStorage
-  // Gửi token lên server để xác thực user
-  this.productService.authenticateUser(token).subscribe(
-    (response) => {
-      // Xác thực thành công
-      // Lưu thông tin user vào biến user
-      this.user = response.user;
-      // Lấy userId từ thông tin user
-      const userId = this.user.id;
-      // Đánh giá sản phẩm
-      this.productService.rateProduct(productId, rating, comment, userId).subscribe(
-        () => {
-          // Đánh giá sản phẩm thành công
-          alert("Cảm ơn bạn đã đánh giá sản phẩm!");
-        },
-        (error) => {
-          // Đánh giá sản phẩm không thành công
-          alert("Đánh giá sản phẩm không thành công!");
-        }
-      );
-    },
-    (error) => {
-      // Xác thực không thành công
-      // Yêu cầu user đăng nhập
-      this.router.navigate(["/login"]);
-    }
-  );
-} else {
-  // Token không tồn tại trong localStorage
-  // Yêu cầu user đăng nhập
-  this.router.navigate(["/login"]);
-}
 }

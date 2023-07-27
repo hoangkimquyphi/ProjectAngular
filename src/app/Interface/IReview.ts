@@ -1,4 +1,6 @@
 export interface IReview{
   comment : string,
-  rating : number
+  rating : number,
+  userId: number,
+  productId: string
 }

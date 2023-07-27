@@ -224,10 +224,10 @@ export class WebApiService {
     return this.http.post<any>(`http://localhost:4000/api/reviews`, review);
   }
 
-  getProductReview(): Observable<any> {
+  // getProductReview(): Observable<any> {
 
-    return this.http.get<any>(`http://localhost:4000/api/reviews`);
-  }
+  //   return this.http.get<any>(`http://localhost:4000/api/reviews`);
+  // }
 
 
   addProductReview(review: any) {

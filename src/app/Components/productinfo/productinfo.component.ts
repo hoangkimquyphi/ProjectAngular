@@ -5,6 +5,7 @@ import { IProduct } from 'src/app/Interface/IProduct';
 import { IReview } from 'src/app/Interface/IReview';
 import { ISubcategory } from 'src/app/Interface/ISubcategory';
 import { CartService } from 'src/app/services/cart.service';
+import { ReviewService } from 'src/app/services/review.service';
 import { WishlistCartService } from 'src/app/services/wishlist-cart.service';
 import { WebApiService } from 'src/app/web-api.service';
 
@@ -16,6 +17,7 @@ import { WebApiService } from 'src/app/web-api.service';
 })
 export class ProductinfoComponent implements OnInit {
   reviews: IReview[] = [];
+  reviewList: IReview|any;
   p: any;
   productQuantity: number = 1;
   productData: any;
@@ -23,7 +25,7 @@ export class ProductinfoComponent implements OnInit {
   loader: Boolean = true;
   result: IProduct[] = [];
   quantity: number = 1;
-  constructor(private route: ActivatedRoute, private api: WebApiService, private cartService: CartService, private wishlistCartService: WishlistCartService, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private api: WebApiService, private cartService: CartService, private wishlistCartService: WishlistCartService, private http: HttpClient, private review: ReviewService) { }
 
   ngOnInit(): void {
     this.api.getSingleProduct(this.route.snapshot.params['productId']).subscribe(product => {
@@ -44,7 +46,7 @@ export class ProductinfoComponent implements OnInit {
       this.loader = false;
       console.log(this.result)
     })
-
+this.review.getAllReview().subscribe(data=>this.reviewList=data)
 
   }
   //added to cart calling from cart service

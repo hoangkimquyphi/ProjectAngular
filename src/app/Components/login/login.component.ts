@@ -31,10 +31,11 @@ export class LoginComponent  implements   OnInit {
     this.authService.login(username, password).subscribe(
       (response) => {
         const token = response.token;
-        localStorage.setItem('token', token);
 
         console.log('Login successful:', response);
+        localStorage.setItem('token', token);
         alert('Đăng nhập thành công')
+
         this.router.navigate(['/']);
       },
       (error) => {
