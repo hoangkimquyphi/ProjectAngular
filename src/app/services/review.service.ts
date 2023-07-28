@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReviewService {
- getAllReview():Observable<any>{
-  return this.http.get<IReview>(`http://localhost:4000/api/reviews`)
+ getReviewById(id:number):Observable<any>{
+  return this.http.get<IReview>(`http://localhost:4000/api/reviews/${id}reviews`)
  }
   constructor(private http: HttpClient) { }
 }

@@ -17,7 +17,7 @@ import { WebApiService } from 'src/app/web-api.service';
 })
 export class ProductinfoComponent implements OnInit {
   reviews: IReview[] = [];
-  reviewList: IReview|any;
+  reviewList: IReview | any;
   p: any;
   productQuantity: number = 1;
   productData: any;
@@ -46,7 +46,13 @@ export class ProductinfoComponent implements OnInit {
       this.loader = false;
       console.log(this.result)
     })
-this.review.getAllReview().subscribe(data=>this.reviewList=data)
+    const id = this.route.snapshot.params['id']
+    this.review.getReviewById(id).subscribe((data) => {
+
+      console.log("xxxxxx", data);
+
+      this.reviewList = data
+    })
 
   }
   //added to cart calling from cart service
