@@ -12,6 +12,7 @@ export interface signUp {
   export interface login {
     username: string;
     password: string;
+    email:string;
   }
   
   export interface product{
@@ -28,7 +29,6 @@ export interface signUp {
     productId:undefined| number,
   }
   export interface cart{
-    length: number;
     name:string,
     price:number,
     category_id:string,

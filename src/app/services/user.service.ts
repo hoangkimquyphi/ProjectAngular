@@ -23,7 +23,7 @@ invalidUserAuth= new EventEmitter<boolean>(false)
     
   }
   userLogin(data:login){
-    this.http.get<signUp[]>(`http://localhost:3000/users?email=${data.email}&password=${data.password}`,
+    this.http.get<signUp[]>(`http://localhost:3000/users?email=${data.username}&password=${data.password}`,
     {observe:'response'}
     ).subscribe((result)=>{
       if(result && result.body?.length){
