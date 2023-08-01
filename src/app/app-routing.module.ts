@@ -12,6 +12,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './Components/admin/admin.component';
 import { AddProductComponent } from './Components/add-product/add-product.component';
 import { HomeAdminComponent } from './Components/home-admin/home-admin.component';
+import { ProductReviewsComponent } from './product-reviews/product-reviews.component';
+
 
 
 const routes: Routes = [
@@ -27,7 +29,7 @@ const routes: Routes = [
   {path:'admin',  component:AdminComponent},
   {path:'addproduct',  component:AddProductComponent},
   {path:'home-admin',  component:HomeAdminComponent},
-
+  {path:'product-reviews/:id',  component:ProductReviewsComponent},
 
 ];
 

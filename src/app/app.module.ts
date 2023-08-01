@@ -29,6 +29,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AddProductComponent } from './Components/add-product/add-product.component';
 import { HomeAdminComponent } from './Components/home-admin/home-admin.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ProductReviewsComponent } from './product-reviews/product-reviews.component';
+
 
 
 @NgModule({
@@ -50,7 +52,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ContactComponent,
     AddProductComponent,
     HomeAdminComponent,
-
+    ProductReviewsComponent,
 
 
   ],

@@ -6,14 +6,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-  
+
   }
   .product > mat-card > a >img{
   /* object-fit: contain; */
   height: 155px;
   margin-bottom: 10px;
   }
-  
+
   .product > mat-card{
   display: inline-block;
   min-height: 300px;
@@ -25,38 +25,38 @@
   margin-left: 30px;
   padding-left: px;
   }
-  
+
   .product .Add-to-cart{
     margin-top: 20px;
-    
+
     cursor: pointer;
   }
-  
+
   .product:hover{
     cursor: pointer;
   }
-  
+
   .btn{
-  
+
   margin: 0px 10px;
-  
+
   }
-  
+
   #plus{
   padding-top: 3px;
   border-radius: 3px;
   }
-  
+
   #minus{
     padding-top: 3.3px;
     border-radius: 3px;
     padding-right: 6px;
-  
+
   }
   .product>mat-card:hover{
   background-color: #88888829;
   }
-  
+
   .wishlist{
     margin-left: 90%;
     font-size: 130%;
@@ -65,7 +65,7 @@
     cursor: pointer;
     color: rgb(178, 67, 67);
   }
-  
+
   .product .Add-to-cart1{
     margin-top: 20px;
     background-color: rgba(158, 231, 109, 0.979);
@@ -76,41 +76,41 @@
     border-color: rgb(0, 152, 0);
     color: #100b0b8a;
   }
-  
+
   .product .Add-to-cart1 i{
     color: rgb(62, 144, 10);
     font-size: 15px;
   padding-right: 3px;
   }
-  
-  
-  
+
+
+
    .product> mat-card>a>img:hover{
     transform:translate(5px,50px)rotate(8deg) scale(1.7);
-  
+
   }
-  
-   
+
+
         @media screen and (max-width: 768px){
           .products .card{
-            
+
             width: 11em;
             box-shadow: -0.2em -0.2em 2em 2px rgb(230, 229, 229),
             0.2em 0.2em 1.5em 3px rgb(214, 214, 214);
-              
-             
-              
+
+
+
             }
           }
           @media screen and (max-width: 435px){
             .products .card{
-              
+
               width: 13em;
               box-shadow: -0.2em -0.2em 2em 2px rgb(230, 229, 229),
               0.2em 0.2em 1.5em 3px rgb(214, 214, 214);
-                
-               
-                
+
+
+
               }
             }
 .confirmbtn{
@@ -120,4 +120,101 @@
 .confirmbtn:hover{
     border: 2px rgb(106, 85, 46) solid;color:rgb(255, 255, 255);
     background-color:  rgb(142, 112, 58);
+}
+
+
+.container {
+  width:90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container > div {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding:0px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+select {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+}
+
+.stars {
+  display: inline-block;
+  width: 100px;
+  height: 20px;
+  background: url('https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678064-star-512.png');
+  background-size: contain;
+}
+
+.stars:before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 20px;
+  background: url('https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678064-star-512.png');
+  background-size: contain;
+  transition: width 0.2s;
+}
+
+.stars:hover:before {
+  width: 20px;
+}
+
+.stars:after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+
+.stars input {
+  display: none;
+}
+
+.stars label {
+  float: right;
+  padding: 0 4px;
+  cursor: pointer;
+}
+
+.stars .active:before {
+  width: 100%;
+}
+
+.rating {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
 }

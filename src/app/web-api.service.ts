@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { ICategory } from './Interface/ICategory';
 import { IOrder } from './Interface/IOrder';
 import { IProduct } from './Interface/IProduct';
@@ -11,7 +11,11 @@ import { cart } from './Interface/ICart';
   providedIn: 'root',
 })
 export class WebApiService {
-
+  getCurrentUserId(): Observable<any> {
+    return this.http.get(`http://localhost:4000/api/user`).pipe(
+      map((user: any) => user.id)
+    );
+  }
   url = 'http://localhost:4000/api/';
   private baseUrl = 'http://localhost:4000/api/users/login';
   constructor(private http: HttpClient,private router:Router) {}
@@ -207,12 +211,42 @@ export class WebApiService {
       productQuantity: productQuantity,
     });
   }
-  private apiUrl = 'http://localhost:4000/api/reviews';
-  getReviews() {
-    return this.http.get<any[]>(this.apiUrl);
+  getProduct(id: string) {
+    return this.http.get<IProduct>(`http://localhost:4000/api/products/${id}`);
   }
 
-  addReview(review: any) {
-    return this.http.post<any>(this.apiUrl, review);
+
+
+
+
+  saveProductReview(review: any,productId :any): Observable<any> {
+    review.productId = productId;
+    return this.http.post<any>(`http://localhost:4000/api/reviews`, review);
   }
+
+  // getProductReview(): Observable<any> {
+
+  //   return this.http.get<any>(`http://localhost:4000/api/reviews`);
+  // }
+
+
+  addProductReview(review: any) {
+    return this.http.post(`http://localhost:4000/api/reviews`, review);
+  }
+  submitReview(productId: number, userId: number, rating: number, review: string): Observable<any> {
+    const url = `http://localhost:4000/api/reviews`;
+    const payload = { productId, userId, rating, review };
+    return this.http.post(url, payload);
+  }
+
+  updateProduct(product: IProduct) {
+    return this.http.put<IProduct>(`http://localhost:4000/api/products/${product.id}`,product);
+  }
+  // mai sửa
+  authenticateUser(token: string): Observable<any> {
+    const url = "/api/authenticate";
+    const body = { token };
+    return this.http.post<any>(url, body);
+  }
+
 }
