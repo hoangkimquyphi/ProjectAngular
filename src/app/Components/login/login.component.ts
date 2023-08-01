@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 import { WebApiService } from 'src/app/web-api.service';
 
@@ -9,43 +10,41 @@ import { WebApiService } from 'src/app/web-api.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent  implements   OnInit {
-  loginForm: FormGroup;
-  showLogin:boolean=true
-  authError:string="";
-  constructor(private formBuilder: FormBuilder, private authService: WebApiService,private router: Router,private user: WebApiService, private product:WebApiService) {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
+export class LoginComponent implements OnInit {
 
-  ngOnInit(): void {
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
+
+   ngOnInit(): void {
     this.user.userAuthReload();
-
   }
 
-  onSubmit(): void {
-    const { username, password } = this.loginForm.value;
+  constructor(private authService: AuthService, private user: WebApiService,private router: Router) {
+  }
 
-    this.authService.login(username, password).subscribe(
+  onSubmit() {
+
+    this.authService.login(this.username, this.password).subscribe(
       (response) => {
-        const token = response.token;
-
+        // const token = response.token;
         console.log('Login successful:', response);
-        localStorage.setItem('token', token);
+        // localStorage.setItem('token', token);
         alert('Đăng nhập thành công')
 
         this.router.navigate(['/']);
       },
-      (error) => {
-        console.log('Login failed:', error.error.message);
-        alert('Sai tài khoản hoặc mật khẩu')
+      error => {
+        if (error.status === 404 && error.error.message === 'user is not found') {
+          this.errorMessage = 'User not found';
+        } else if (error.status === 401 && error.error.message === 'Unauthorized') {
+          this.errorMessage = 'Invalid username or password';
+        } else {
+          this.errorMessage = 'Unknown error occurred';
+        }
       }
     );
 
-
-
   }
-}
 
+}

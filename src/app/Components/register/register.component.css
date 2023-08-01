@@ -1,16 +1,17 @@
 .form-container {
-  width: 100%;
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 0 10px #ccc;
-  /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaT7lLZ1ZCpIr8Smirpgp0hhzWgc_FsfnCPg&usqp=CAU'); */
+  background-color: #fff;
+  font-family: Arial, sans-serif;
 }
 
-.form-title {
-  margin-top: 0;
+.form-container h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .form-group {
@@ -20,47 +21,47 @@
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
-.form-control {
+.form-group input,
+.form-group select {
   display: block;
   width: 100%;
   padding: 10px;
-  font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
-.alert {
-  margin-top: 10px;
+.form-group select {
+  height: 42px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.form-group div {
+  color: red;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  display: block;
+  margin-top: 20px;
   padding: 10px;
-  border: 1px solid #f00;
-  border-radius: 5px;
-  background-color: #fee;
-  color: #f00;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
+  width: 100%;
+  background-color: #007bff;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
   color: #fff;
+  cursor: pointer;
 }
 
-.btn:hover {
-  background-color: #0069d9;
-}
-
-.btn:active {
-  background-color: #005cbf;
-}
-.button{
-  text-align: center;
+.btn-primary:hover {
+  background-color: #0062cc;
 }

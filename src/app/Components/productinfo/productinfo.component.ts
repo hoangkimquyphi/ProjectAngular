@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IProduct } from 'src/app/Interface/IProduct';
 import { IReview } from 'src/app/Interface/IReview';
 import { ISubcategory } from 'src/app/Interface/ISubcategory';
+import { IUserDetail } from 'src/app/Interface/IUserDetail';
 import { CartService } from 'src/app/services/cart.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { WishlistCartService } from 'src/app/services/wishlist-cart.service';
@@ -16,8 +17,9 @@ import { WebApiService } from 'src/app/web-api.service';
   styleUrls: ['./productinfo.component.css']
 })
 export class ProductinfoComponent implements OnInit {
-  reviews: IReview[] = [];
-  reviewList: IReview | any;
+  user:IUserDetail|any;
+  reviews: IReview = { reviews: [] };
+  // reviewList: IReview | any;
   p: any;
   productQuantity: number = 1;
   productData: any;
@@ -46,14 +48,28 @@ export class ProductinfoComponent implements OnInit {
       this.loader = false;
       console.log(this.result)
     })
-    const id = this.route.snapshot.params['id']
-    this.review.getReviewById(id).subscribe((data) => {
 
-      console.log("xxxxxx", data);
 
-      this.reviewList = data
-    })
+    // const id = this.route.snapshot.params['id']
+    // this.review.getReviewById(id).subscribe((data) => {
 
+    //   console.log("xxxxxx", data);
+
+    //   this.reviewList = data
+    // })
+
+    const productId = this.route.snapshot.params['productId'];
+    this.review.getReviewsByProductId(productId)
+      .subscribe(reviews => {
+        console.log("review", reviews);
+
+        this.reviews = reviews
+
+      });
+  }
+  calculateAverageRating(): number {
+    const totalRating = this.reviews.reviews.reduce((sum, review) => sum + review.rating, 0);
+    return totalRating / this.reviews.reviews.length;
   }
   //added to cart calling from cart service
   addtocart(dt: IProduct) {

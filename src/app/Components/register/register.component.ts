@@ -20,6 +20,16 @@ export class RegisterComponent {
   password: string |any;
   password_confirmation: |any;
   errorMessages: string[] = [];
+
+  usernameError: string = '';
+  emailError: string = '';
+  full_nameError: string = '';
+  addressError: string = '';
+  phoneError: string = '';
+  passwordError: string = '';
+  passwordConfirmationError: string = '';
+
+
   constructor(private userService: WebApiService,private router:Router) {}
   onSubmit() {
 
@@ -30,10 +40,49 @@ export class RegisterComponent {
       },
       (error) => {
         console.log('register failed:', error);
-        alert('Vui lòng nhập đầy đủ các trường và đúng định dạng')
+        alert('required to enter all fields or correct format')
       }
     );
 
-}
+    this.clearErrors();
+
+    if (!this.username) {
+      this.usernameError = 'Username is required';
+    }
+
+    if (!this.email) {
+      this.emailError = 'Email is required';
+    } else if (!this.isValidEmail(this.email)) {
+      this.emailError = 'Email is invalid';
+    }
+
+    if (!this.full_name) {
+      this.full_nameError = 'Full name is required';
+    }
+
+    if (!this.password) {
+      this.passwordError = 'Password is required';
+    }
+
+    if (!this.password_confirmation) {
+      this.passwordConfirmationError = 'Password confirmation is required';
+    } else if (this.password_confirmation !== this.password) {
+      this.passwordConfirmationError = 'Password confirmation does not match';
+    }
+  }
+
+  clearErrors() {
+    this.usernameError = '';
+    this.emailError = '';
+    this.full_nameError = '';
+    this.passwordError = '';
+    this.passwordConfirmationError = '';
+  }
+
+  isValidEmail(email: string) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 
 }
+
