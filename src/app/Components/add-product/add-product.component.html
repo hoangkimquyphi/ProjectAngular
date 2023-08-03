@@ -1,0 +1,85 @@
+<h2 class="bg-3 p-1" style="background-color: rgb(72, 255, 0);">Add new product</h2>
+<form (submit)="addNewProduct(addProductForm)" class="row g-3 needs-validation" #addProductForm="ngForm" novalidate>
+  <div class="col-md-5">
+    <label for="validationCustom01" class="form-label">Product name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="validationCustom01"
+      value=""
+      name="name" ngModel
+      required
+    />
+  </div>
+    <div class="col-md-4">
+      <label for="validationCustom05" class="form-label">Category Id</label>
+      <input type="text" class="form-control" id="validationCustom05" required name="category_id" ngModel/>
+    </div>
+    <div class="col-md-12">
+      <label for="validationCustom05" class="form-label">Product Image</label>
+      <input type="text" class="form-control" id="validationCustom05" required name="image_url" ngModel/>
+    </div>
+  <div class="col-md-3">
+    <label for="validationCustom05" class="form-label">Product quantity</label>
+    <input type="text" class="form-control" id="validationCustom05" required name="quantity" ngModel/>
+  </div>
+
+  <div class="col-md-3">
+    <label for="validationCustom03" class="form-label">Product Price</label>
+    <input type="text" class="form-control" id="validationCustom03"name="price" ngModel required />
+  </div>
+  <div class="col-md-9">
+    <label for="validationCustom02" class="form-label">Description </label>
+    <input
+      type="text"
+      class="form-control"
+      id="validationCustom02"
+      value=""
+      name="description" ngModel
+      required
+    />
+  </div>
+  <div class="col-md-3">
+    <label for="validationCustom04" class="form-label">brand</label>
+    <select class="form-select" id="validationCustom04"name="brand" ngModel required>
+      <option selected disabled value="">Choose...</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+  </div>
+  <div class="col-md-5">
+    <label for="validationCustom05" class="form-label">material</label>
+    <select class="form-select" id="validationCustom04"name="material" ngModel required>
+      <option selected disabled value="">Choose...</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="validationCustom05" class="form-label">color</label>
+    <select class="form-select" id="validationCustom04" name="color" ngModelrequired>
+      <option selected disabled value="">Choose...</option>
+      <option value="1">1</option>
+
+    </select>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value=""
+        id="invalidCheck"
+        required
+      />
+      <label class="form-check-label" for="invalidCheck">
+        Agree to terms and conditions
+      </label>
+      <div class="invalid-feedback">You must agree before submitting.</div>
+    </div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </div>
+</form>

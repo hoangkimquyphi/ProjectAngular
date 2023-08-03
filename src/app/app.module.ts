@@ -1,54 +1,81 @@
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { SellerAuthComponent } from './seller-auth/seller-auth.component';
-import { SellerHomeComponent } from './seller-home/seller-home.component';
-import { SellerAddProductComponent } from './seller-add-product/seller-add-product.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SellerUpdateProductComponent } from './seller-update-product/seller-update-product.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FooterComponent } from './footer/footer.component';
-import { SearchComponent } from './search/search.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { UserAuthComponent } from './user-auth/user-auth.component';
-import { CartPageComponent } from './cart-page/cart-page.component';
+import { HomeComponent } from './Components/home/home.component';
+import { ProductinfoComponent } from './Components/productinfo/productinfo.component';
+import { HeaderComponent } from './Components/header/header.component';
+import { FooterComponent } from './Components/footer/footer.component';
+import{BrowserAnimationsModule}  from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { WebApiService } from './web-api.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { WishlistComponent } from './Components/wishlist/wishlist.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './shared/filter.pipe';
+import { LoginComponent } from './Components/login/login.component';
+import { RegisterComponent } from './Components/register/register.component';
+import { AdminComponent } from './Components/admin/admin.component';
+
+import { TrackDetailsComponent } from './Components/track-details/track-details.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { RouterModule } from '@angular/router';
+import { Authinterceptor } from './auth/auth.interceptor';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { MyOrdersComponent } from './my-orders/my-orders.component';
-import { RegisterComponent } from './register/register.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { AddProductComponent } from './Components/add-product/add-product.component';
+import { HomeAdminComponent } from './Components/home-admin/home-admin.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ProductReviewsComponent } from './product-reviews/product-reviews.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     HomeComponent,
-    SellerAuthComponent,
-    SellerHomeComponent,
-    SellerAddProductComponent,
-    SellerUpdateProductComponent,
+    ProductinfoComponent,
+    HeaderComponent,
     FooterComponent,
-    SearchComponent,
-    ProductDetailsComponent,
-    UserAuthComponent,
-    CartPageComponent,
+    FilterPipe,
+    WishlistComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminComponent,
+
+    TrackDetailsComponent,
     CheckoutComponent,
-    MyOrdersComponent,
-    RegisterComponent
+    AboutComponent,
+    ContactComponent,
+    AddProductComponent,
+    HomeAdminComponent,
+    ProductReviewsComponent,
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    CarouselModule,
+    MatCardModule,
+    NgxPaginationModule,
+    BrowserAnimationsModule,
     HttpClientModule,
-    FontAwesomeModule,
-    NgbModule
+   NgxSkeletonLoaderModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatSlideToggleModule,
+
   ],
-  providers: [],
+  providers: [WebApiService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: Authinterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
