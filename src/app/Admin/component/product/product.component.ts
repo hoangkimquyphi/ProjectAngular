@@ -1,166 +1,151 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsService } from 'src/app/service/products.service';
-
-
-
-
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  brand: string;
-  color: string;
-  material: string;
-  quantity: string;
-  category_id: string;
-  image_url: string;
-  
-}
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ProductService } from 'src/app/_service/product.service';
+import { Product } from 'src/app/class/product';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent {
-
-
-
+export class ProductComponent implements OnInit {
   [x: string]: any;
-  lists : any|Product[];
-  productId = 0;
-  onDeleteSuccess: any;
-  
-products:any[]=[];
 
-  // currentPage: number = 1;
-constructor(private activatedRoute: ActivatedRoute,private productService: ProductsService, private router: Router ){
-  
-  // this.loadProducts();
-}
-// getList() :Observable <any>{
-//   const productUrl = 'http://localhost:9000/api/products';
-//   return this.HttpClient.get<Product>(productUrl);
-// }
-ngOnInit(): void {
-  // this.productId = data['id'];
-  this.productService.getProduct().subscribe(data =>{
-    this.lists = data;
-  })
-}
+  listProduct : any;
+  selectedFile: File | null = null;
+  productForm !: FormGroup;
+  deleteId !: number;
+  editingProduct :any;
 
-// loadProducts() {
-//   this.productService.getAllProducts().subscribe(
-//     (response: any) => {
-//       console.log(response); // In ra response để kiểm tra định dạng của chuỗi JSON
-//       this.products = response;
-//     },
-//     (error: any) => {
-//       console.error('Error loading products', error);
-//       alert('Error loading products');
-//     }
-//   );
-// }
+  constructor(private productService:ProductService,public fb: FormBuilder){
+    this.productForm = this.fb.group({
+      name: [''],
+      description: [''],
+      price: [''],
+      quantity: [''],
+      category_id: [''],
+      color: [''],
+      brand: [''],
+      image_url: [''],
+      material: [''],
+      id: [''],
 
 
-// getAllProduct() {
-//   return this.productService.getAllProducts().subscribe(
-//     (data)  => (this['product'] = data)
-//   ); 
-// }
+    });
+  }
 
-// loadProducts() {
-//   this.productService.getProduct().subscribe(
-//     products => {
-//       this.products = products;
-//     },
-//     error => {
-//       console.error('Error loading products', error);
-//       // Display an error message to the user
-//       alert('Error loading products');
-//     }
-//   );
-// }
+  ngOnInit(): void {
+    this.getListProduct();
+  }
 
-deleteProduct(productId: number) {
-  this.productService.deleteProduct(productId).subscribe(
-    (response: any) => {
-      console.log(response);
-      // Remove deleted product from list
-       this.lists.filter((item: { id: number; }) => item.id !== productId);
-      // Show success message
-      this.showMessage('Product has been deleted');
-    },
-    (error: any) => {
-      console.error('Error deleting product', error);
-      // Show error message
-      this.showMessage('Error deleting product');
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
     }
-  );
-}
-
-showMessage(message: string) {
-  // TODO: Implement a better way to show messages
-  alert(message);
-}
-    
-  // )  
-  // }
-  // list(){
-  //   this.productService.getProduct().subscribe((resuft)=>{
-  //     if(resuft){
-  //       this.lists = resuft;
-  //     }
-  //   })
-  // }
+  }
 
 
+  getListProduct(){
+    this.productService.getListProduct().subscribe(data=>{
+      this.listProduct = data;
+    })
+  }
 
 
+  createProduct(){
+    const data : Product ={
+      name: this.productForm.get('name')?.value,
+      description: this.productForm.get('description')?.value,
+      price: this.productForm.get('price')?.value,
+      quantity: this.productForm.get('quantity')?.value,
+      category_id: this.productForm.get('category_id')?.value,
+      color: this.productForm.get('color')?.value,
+      image_url: this.productForm.get('image_url')?.value,
+      material: this.productForm.get('material')?.value,
+      brand: this.productForm.get('brand')?.value,
+      id: this.productForm.get('id')?.value,
+         
+    }
 
-
-
-
-
-
-
-
-
+    if (this.productForm.valid && this.selectedFile){
+      this.productService.createProduct(data,this.selectedFile).subscribe({
+        next: res=>{
+          this.getListProduct;
+        }
+      })
+    }
+  
 
   
 
 
 
 
+  }
+  
+  onSubmit(){
+    const data : Product ={
+      name: this.productForm.get('name')?.value,
+      description: this.productForm.get('description')?.value,
+      price: this.productForm.get('price')?.value,
+      quantity: this.productForm.get('quantity')?.value,
+      category_id: this.productForm.get('category_id')?.value,
+      color: this.productForm.get('color')?.value,
+      image_url: this.productForm.get('image_url')?.value,
+      material: this.productForm.get('material')?.value,
+      brand: this.productForm.get('brand')?.value,
+      id: this.productForm.get('id')?.value,
+ 
+
+    }
+  
+  }
 
 
-// ngOnInit() {
-//   this.activatedRoute.params.subscribe(data => {
-   
-//     this.productService.getProduct(this.productId).subscribe(product => {
-//       this.product = product;
-//     });
-//   });
-// }
+  editproduct(data: any){
+    this.editingProduct = data;
+    this.productForm.patchValue({
+      name: data.name,
+      description: data.description,
+      price: data.price,
+      quantity: data.quantity,
+      category_id: data.category_id,
+      color: data.color,
+      material: data.material,
+      brand: data.brand,
+      image_url: data.image_url,
+      id: data.id,
 
-// deleteProduct() :void {
-//   this.productService.deleteProduct(this.productId).subscribe(() => {
-//     console.log("Xóa sản phẩm thành công");
-//     this.router.navigate(['/products']);
-//     // Hiển thị thông báo thành công
-//   }, error => {
-//     console.error(error);
-//     // Xử lý lỗi khi xóa sản phẩm thất bại hoặc có lỗi xảy ra khi gọi API xóa sản phẩm
+    })
+    console.log(this.productForm.value);
+  }
+
+  deleteProduct(){
+    this.productService.deleteProduct(this.deleteId).subscribe(data =>{
+      this.getListProduct();
+     
+    });
+    location.reload();
+  
+  }
+
+
+  getDeleteId(id: any){
+    this.deleteId = id;
+  
+  }
 
 
 
-//   });
+  
+  resetForm() {
+    this.editingProduct = null;
+    this.productForm.reset();
+  }
 
 
+  
+  
+ 
 }
-
-
-
-

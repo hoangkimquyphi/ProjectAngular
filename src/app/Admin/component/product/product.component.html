@@ -1,70 +1,120 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title></title>
-    </head>
-    <body>
-      <h1>Danh Sách Quản Lý Sản Phẩm</h1>
+<h4 class="card-title">Product</h4>
 
-      <div class="page-content">
-        <div class="records table-responsive">
-          <div class="record-header">
-            <div class="add">
+<input class="btn btn-success" type="button" value="Thêm mới" data-bs-toggle="modal" data-bs-target="#myModal">
+<div class="modal fade" id="myModal" (hidden.bs.modal)="resetForm()" >
+    <form class="modal-dialog" [formGroup]="productForm" (ngSubmit)="onSubmit()" >
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Thêm mới danh mục</h4>
+          <button type="button" class="btn-close"  data-bs-dismiss="modal" ></button>
+        </div>
+  
+        <!-- Modal body -->0
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="" class="form-label" >Stt</label>
+            <input type="text"  class="form-control" formControlName="id" placeholder="id">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label" >Name</label>
+            <input type="text"  class="form-control" formControlName="name" placeholder="name">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label" >Name</label>
+            <input type="text"  class="form-control" formControlName="description" placeholder="description">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label" >image_url</label>
+            <input type="text"  class="form-control" formControlName="image_url" placeholder="image_url">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label" >Price</label>
+            <input type="text"  class="form-control" formControlName="price" placeholder="price">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label" >Quantity</label>
+            <input type="text"  class="form-control" formControlName="quantity" placeholder="quantity">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label" >CategoryId</label>
+            <input type="text"  class="form-control" formControlName="category_id" placeholder="category_id">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label" >brand</label>
+            <input type="text"  class="form-control" formControlName="brand" placeholder="brand">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label" >material</label>
+            <input type="text"  class="form-control" formControlName="material" placeholder="material">
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <button type="submit"   class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+          <button type="button"  class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </form>
+  </div>
+  
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr class="text-center">
+        <th>Stt</th>
+        <th>Name</th>
+        <th>image_url</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>description</th>
+        <th>brand</th>
+        <th>material</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listProduct">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td><img src="{{ item.image_url }}" width="100px" /></td>
+        <td>{{item.price}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.brand}}</td>
+        <td>{{item.material}}</td>
+        
+        <td>
+            <!-- <img [src]="'http://localhost:8080/uploads/' + item.thumbnail" width="100" alt=""> -->
+        </td>
+        <td>
+          
           
 
-              <div class="search-container">
-                <input type="text" placeholder="Search...">
-                <button type="submit">Search</button>
-              </div>
-              
-            </div>
-          </div>
-          <div>
-            <table class="">
-              <thead>
-                <tr>
-                  <th scope="col">STT</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Color</th>
-                  <th scope="col">Brand</th>
-                  <th scope="col">Image</th>
-                  <th scope="col">Matetial</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Feture</th>
-                </tr>
-              </thead>
-              <tbody  *ngFor ="let item of lists">
-                <tr>
-                  <th scope="row">{{item.id}}</th>
-                  <td>{{item.name}}</td>
-                  <td>{{item.color}}</td>
-                  <td>{{item.brand}}</td>
-                  <td><img height="49" src="{{item.image_url}}"></td>
-                  <td>{{item.material}}</td>
-                  <td>{{item.description}}</td>
-                  <td>{{item.price}}</td>
-                  <td>{{item.quantity}}</td>
-                  <td>
-                    <div class="actions">
-                        <span><button (click)="deleteProduct(item.id)" class="delete-button">Delete</button></span>
-                        <span><a href="table"><button class="edit-button">Edit</button></a></span>
+          <button type="button" (click)="editproduct(item)"  class="btn btn-info text-light" data-bs-toggle="modal" data-bs-target="#myModal">Edit</button>
+          <button type="button" (click)="getDeleteId(item.id)" data-bs-toggle="modal" data-bs-target="#deleteModal" class="btn btn-danger text-light ms-2">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-                  
-                        
-                        <span class="las la-ellipsis-v"></span>
-                    </div>
-                </tr>
-            
-              </tbody>
-            </table>
-          </div>
 
+  <div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Bạn có chắc xóa đối tượng</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
         </div>
+  
+        <div class="modal-footer">
+          <button type="submit" (click)="deleteProduct()"  data-bs-dismiss="modal"  class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+  
       </div>
-    </body>
-  </html>
-
+    </div>
+  </div>
