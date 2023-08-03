@@ -1,113 +1,77 @@
-import { HttpClient } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
-import { cart, order, product } from '../data-type';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Product } from '../class/product';
+
+const PRODUCT_API = "http://localhost:4000/api/products/";
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ProductService {
-  cartData = new EventEmitter<product[] | []>();
+  [x: string]: any;
+
   constructor(private http: HttpClient) { }
-  addProduct(data: product) {
-    return this.http.post('http://localhost:7800/api/', data);
-  }
-  productList() {
-    return this.http.get<product[]>('http://localhost:7800/api/products');
-  }
 
-  deleteProduct(id: number) {
-    return this.http.delete(`http://localhost:7800/api/products/${id}`);
+  
+  getListProduct(): Observable<any> {
+    return this.http.get('http://localhost:4000/api/products', httpOptions);
   }
-
   getProduct(id: string) {
-    return this.http.get<product>(`http://localhost:7800/api/products/${id}`);
+    return this.http.get<Product>(`http://localhost:4000/api/products/${id}`);
   }
 
-  updateProduct(product: product) {
-    return this.http.put<product>(
-      `http://localhost:7800/api/products/${product.id}`,
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<Product>('http://localhost:4000/api/products' + id, httpOptions);
+  }
+  
+  getProducts(id: number) {
+    return this.http.get<Product>(`http://localhost:4000/api/products/${id}`);
+  }
+
+  createProduct(product: Product, file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    Object.keys(product).forEach(key => {
+      let value = product[key as keyof Product];
+      if (typeof value === 'number') {
+        value = value.toString();
+      }
+      formData.append(key, value);
+    });
+    formData.append('file', file);
+    return this.http.post('http://localhost:4000/api/products/', formData);
+  }
+
+ 
+
+
+
+ 
+  // updateProduct(id: number, product: Product): Observable<any> {
+  //   const formData: FormData = new FormData();
+  //   Object.keys(product).forEach(key => {
+  //     let value = product[key as keyof Product];
+  //     if (typeof value === 'number') {
+  //       value = value.toString();
+  //     }
+  //     formData.append(key, value);
+  //   });
+
+  updateProduct(product: Product) {
+    return this.http.put<Product>(
+      `http://localhost:4000/api/products/${product.id}`,
       product
     );
   }
-  popularProducts() {
-    return this.http.get<product[]>('http://localhost:7800/api/products');
+    
+  
+
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete('http://localhost:4000/api/products/' + id, );
   }
 
-  trendyProducts() {
-    return this.http.get<product[]>('http://localhost:7800/api/products');
-  }
-
-  searchProduct(query: string) {
-    return this.http.get<product[]>(
-      `http://localhost:3000/products?q=${query}`
-    );
-  }
-
-  localAddToCart(data: product) {
-    let cartData = [];
-    let localCart = localStorage.getItem('localCart');
-    if (!localCart) {
-      localStorage.setItem('localCart', JSON.stringify([data]));
-      this.cartData.emit([data]);
-    } else {
-      cartData = JSON.parse(localCart);
-      cartData.push(data);
-      localStorage.setItem('localCart', JSON.stringify(cartData));
-      this.cartData.emit(cartData);
-    }
-  }
-
-  removeItemFromCart(productId: number) {
-    let cartData = localStorage.getItem('localCart');
-    if (cartData) {
-      let items: product[] = JSON.parse(cartData);
-      items = items.filter((item: product) => productId !== item.id);
-      localStorage.setItem('localCart', JSON.stringify(items));
-      this.cartData.emit(items);
-    }
-  }
-
-  addToCart(cartData: cart) {
-    return this.http.post('http://localhost:3000/cart', cartData);
-  }
-  getCartList(userId: number) {
-    return this.http
-      .get<product[]>('http://localhost:3000/cart?userId=' + userId, {
-        observe: 'response',
-      })
-      .subscribe((result) => {
-        if (result && result.body) {
-          this.cartData.emit(result.body);
-        }
-      });
-  }
-  removeToCart(cartId: number) {
-    return this.http.delete('http://localhost:3000/cart/' + cartId);
-  }
-  currentCart() {
-    let userStore = localStorage.getItem('user');
-    let userData = userStore && JSON.parse(userStore);
-    return this.http.get<cart[]>('http://localhost:3000/cart?userId=' + userData.id);
-  }
-
-  orderNow(data: order) {
-    return this.http.post('http://localhost:3000/orders', data);
-  }
-  orderList() {
-    let userStore = localStorage.getItem('user');
-    let userData = userStore && JSON.parse(userStore);
-    return this.http.get<order[]>('http://localhost:3000/orders?userId=' + userData.id);
-  }
-
-  deleteCartItems(cartId: number) {
-    return this.http.delete('http://localhost:3000/cart/' + cartId).subscribe((result) => {
-      this.cartData.emit([]);
-    })
-  }
-
-  cancelOrder(orderId:number){
-    return this.http.delete('http://localhost:3000/orders/'+orderId)
-
-  }
-
+ 
 }
