@@ -31,6 +31,10 @@ import { HomeAdminComponent } from './Components/home-admin/home-admin.component
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProductReviewsComponent } from './product-reviews/product-reviews.component';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { InterceptorComponent } from './interceptor/interceptor.component';
+import { JwtInterceptorComponent } from './interceptor/jwt.interceptor/jwt.interceptor.component';
 
 
 @NgModule({
@@ -53,6 +57,9 @@ import { ProductReviewsComponent } from './product-reviews/product-reviews.compo
     AddProductComponent,
     HomeAdminComponent,
     ProductReviewsComponent,
+    InterceptorComponent,
+    JwtInterceptorComponent,
+
 
 
   ],
@@ -69,7 +76,8 @@ import { ProductReviewsComponent } from './product-reviews/product-reviews.compo
     ReactiveFormsModule,
     RouterModule,
     MatSlideToggleModule,
-
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [WebApiService,{
     provide: HTTP_INTERCEPTORS,
