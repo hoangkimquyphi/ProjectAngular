@@ -1,16 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { ICategory } from './Interface/ICategory';
 import { IOrder } from './Interface/IOrder';
 import { IProduct } from './Interface/IProduct';
 import { ISubcategory } from './Interface/ISubcategory';
 import { Router } from '@angular/router';
 import { cart } from './Interface/ICart';
+import { AuthService } from './services/auth.service';
 @Injectable({
   providedIn: 'root',
 })
 export class WebApiService {
+
+
+
   getCurrentUserId(): Observable<any> {
     return this.http.get(`http://localhost:4000/api/user`).pipe(
       map((user: any) => user.id)
@@ -18,7 +22,7 @@ export class WebApiService {
   }
   url = 'http://localhost:4000/api/';
   private baseUrl = 'http://localhost:4000/api/users/login';
-  constructor(private http: HttpClient,private router:Router) {}
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) { }
 
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>('http://localhost:4000/api/products');
@@ -34,7 +38,7 @@ export class WebApiService {
   }
 
   getSubCategory(): Observable<ISubcategory[]> {
-    return this.http.get<ISubcategory[]>( 'http://localhost:4000/api/categories');
+    return this.http.get<ISubcategory[]>('http://localhost:4000/api/categories');
   }
 
 
@@ -75,10 +79,10 @@ export class WebApiService {
   }
 
 
-  createProduct(productBody: any): Observable<IProduct>{
+  createProduct(productBody: any): Observable<IProduct> {
     const productUrl = 'http://localhost:4000/api/products/';
 
-    return this.http.post<IProduct>(productUrl,productBody);
+    return this.http.post<IProduct>(productUrl, productBody);
   };
 
 
@@ -119,7 +123,7 @@ export class WebApiService {
 
   //Editing product details put method for Admin only
   EditCart(val: IProduct) {
-    return this.http.put( 'http://localhost:4000/api/products/' + val.id, val);
+    return this.http.put('http://localhost:4000/api/products/' + val.id, val);
   }
   localAddToCart(data: IProduct) {
     let cartData = [];
@@ -167,8 +171,8 @@ export class WebApiService {
     return this.http.get<cart[]>('http://localhost:4000/api/users/carts?userId=' + userData.id);
   }
 
-  userAuthReload(){
-    if(localStorage.getItem('user')){
+  userAuthReload() {
+    if (localStorage.getItem('user')) {
       this.router.navigate(['/']);
     }
   }
@@ -215,38 +219,31 @@ export class WebApiService {
     return this.http.get<IProduct>(`http://localhost:4000/api/products/${id}`);
   }
 
-
-
-
-
-  saveProductReview(review: any,productId :any): Observable<any> {
-    review.productId = productId;
-    return this.http.post<any>(`http://localhost:4000/api/reviews`, review);
-  }
-
-  // getProductReview(): Observable<any> {
-
-  //   return this.http.get<any>(`http://localhost:4000/api/reviews`);
-  // }
-
-
-  addProductReview(review: any) {
-    return this.http.post(`http://localhost:4000/api/reviews`, review);
-  }
-  submitReview(productId: number, userId: number, rating: number, review: string): Observable<any> {
-    const url = `http://localhost:4000/api/reviews`;
-    const payload = { productId, userId, rating, review };
-    return this.http.post(url, payload);
-  }
-
   updateProduct(product: IProduct) {
-    return this.http.put<IProduct>(`http://localhost:4000/api/products/${product.id}`,product);
-  }
-  // mai sửa
-  authenticateUser(token: string): Observable<any> {
-    const url = "/api/authenticate";
-    const body = { token };
-    return this.http.post<any>(url, body);
+    return this.http.put<IProduct>(`http://localhost:4000/api/products/${product.id}`, product);
   }
 
+
+  saveProductReview(review: any, productId: number): Observable<any> {
+    // review.productId = productId;
+    // const token = this.authService.getToken();
+    const token = localStorage.getItem('access_token');
+    let headers = new Headers();
+    this.createTokenizeHeader(headers,token)
+    console.log(token)
+    if (token) {
+
+      // const headers = new Headers({
+      //   'Content-Type': 'application/json',
+      //   'Authorization': `Bearer ${token}`
+      // })
+      console.log(headers)
+
+      return this.http.post<any>(`http://localhost:4000/api/reviews/${productId}`, { headers, observe: 'response' });
+    }
+    return of(null);
+  }
+  createTokenizeHeader(headers: Headers,token:any) {
+    headers.append('Token', token);
+  }
 }

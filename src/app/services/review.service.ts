@@ -9,16 +9,27 @@ import { AuthService } from './auth.service';
 })
 export class ReviewService  {
   averageRating = 0;
+  private apiUrl = 'http://localhost:4000/api/reviews';
   constructor(private http: HttpClient) { }
 
   getReviewsByProductId(productId: number): Observable<IReview> {
     // return this.http.get<IReview[]>(`http://localhost:4000/api/reviews/${productId}/reviews`);
     const url = `http://localhost:4000/api/reviews/${productId}/reviews`;
     return this.http.get<IReview>(url);
-
-
   }
-  
+  createReview(review: Review, productId: number): Observable<Review> {
+    return this.http.post<Review>(`http://localhost:4000/api/reviews/${productId}`, review);
+  }
+
+  updateReview(id: number, review: Review, productId: number): Observable<Review> {
+    return this.http.put<Review>(`http://localhost:4000/api/reviews/${id}/product/${productId}`, review);
+  }
+
+  deleteReview(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+
 
 
 

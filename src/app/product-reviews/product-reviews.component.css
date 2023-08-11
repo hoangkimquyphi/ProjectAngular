@@ -38,7 +38,7 @@ textarea {
 }
 
 button[type="submit"] {
-  background-color: #ff7f50;
+  background-color: #0062cc;
   color: #fff;
   font-size: 1.2rem;
   font-weight: bold;
@@ -54,5 +54,25 @@ button[type="submit"] i {
 }
 
 button[type="submit"]:hover {
-  background-color: #ff6347;
+  background-color: #1c7ce2;
+}
+
+.rating {
+  font-size: 2rem;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.rating span {
+  cursor: pointer;
+}
+
+.rating span:hover,
+.rating span:hover ~ span {
+  color: #ff7f50;
+}
+
+.rating span.active,
+.rating span.active ~ span {
+  color: #ff7f50;
 }

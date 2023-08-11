@@ -126,7 +126,17 @@ export class ProductinfoComponent implements OnInit {
     this.http.put('http://localhost:4000/api/products', { quantity: this.quantity }).subscribe();
   }
 
-
+  convertToStars(rating: number): string {
+    let stars = '';
+    for (let i = 0; i < 5; i++) {
+      if (i < Math.round(rating)) {
+        stars += '<span class="fa fa-star checked"></span>';
+      } else {
+        stars += '<span class="fa fa-star"></span>';
+      }
+    }
+    return stars;
+  }
 
 
 }
