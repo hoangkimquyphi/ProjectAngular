@@ -42,10 +42,9 @@ export class ProductReviewsComponent implements OnInit {
         console.error('Failed to fetch product:', error);
       }
     );
-    this.user = this.userService.getCurrentUserId();
-
-
+    this.user = this.reviewService.getCurrentUserId();
   }
+
 
   saveProductReview() {
     const review = {
@@ -67,7 +66,7 @@ export class ProductReviewsComponent implements OnInit {
 
     // Save
     if (this.isLoggedIn) {
-      this.productService.saveProductReview(review, this.product.id).subscribe(
+      this.reviewService.saveProductReview(review, this.product.id).subscribe(
         (response: any) => {
           console.log('Product review saved successfully:', response);
           const newToken = response.headers.get('Authorization');
@@ -93,18 +92,6 @@ export class ProductReviewsComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
-
-
 }
-
-// onSubmit(): void {
-//   const userId = /* get the user ID from somewhere */;
-//   const productId = +this.route.snapshot.paramMap.get('productId');
-//   const review = { ...this.review, userId, productId } as Review;
-//   this.reviewService.createReview(review)
-//     .subscribe(() => {
-//       // do something after the review is created
-//     });
-// }
 
 

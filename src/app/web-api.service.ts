@@ -232,7 +232,6 @@ export class WebApiService {
     this.createTokenizeHeader(headers,token)
     console.log(token)
     if (token) {
-
       // const headers = new Headers({
       //   'Content-Type': 'application/json',
       //   'Authorization': `Bearer ${token}`
